@@ -4,9 +4,9 @@
 
 Various caching implementations for go.
 
-## TimedTextCache
+## TimedText
 
-The TimedTextCache is particularly useful for storing a `map[string]string`
+The cache.TimedText is particularly useful for storing a `map[string]string`
 where the keys should expire after a given duration. It also provides a nice
 benefit of allowing for efficiently appending to a keys existing text.
 

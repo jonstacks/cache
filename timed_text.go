@@ -7,18 +7,18 @@ import (
 	"time"
 )
 
-// TimedTextCache is caches strings for a given amount of time. It also supports
+// TimedText is caches strings for a given amount of time. It also supports
 // the ability to easily append text to a given key.
-type TimedTextCache struct {
+type TimedText struct {
 	m           sync.RWMutex
 	cache       map[string]*bytes.Buffer
 	expireAfter *time.Duration
 }
 
-// NewTimedTextCache initializes a new TimedTextCache with the given expiration
+// NewTimedText initializes a new TimedText with the given expiration
 // time. Pass nil for no expiration of the cache.
-func NewTimedTextCache(expireAfter *time.Duration) TimedTextCache {
-	return TimedTextCache{
+func NewTimedText(expireAfter *time.Duration) TimedText {
+	return TimedText{
 		cache:       make(map[string]*bytes.Buffer),
 		expireAfter: expireAfter,
 	}
@@ -29,7 +29,7 @@ func NewTimedTextCache(expireAfter *time.Duration) TimedTextCache {
 // to the current value. It returns both a bool and an error. The bool value
 // will be true if the key was created, otherwise false. If there was trouble
 // writing the value to the internal buffer, an error will be returned.
-func (ttc *TimedTextCache) CreateOrAppend(key, value string) (created bool, err error) {
+func (ttc *TimedText) CreateOrAppend(key, value string) (created bool, err error) {
 	ttc.m.Lock()
 	defer ttc.m.Unlock()
 
@@ -51,7 +51,7 @@ func (ttc *TimedTextCache) CreateOrAppend(key, value string) (created bool, err 
 // CreateOrReplace creates the given key with the given value if the key does
 // not exist in the cache. Otherwise, it replaces the value. It returns true
 // if the key was created, otherwise false
-func (ttc *TimedTextCache) CreateOrReplace(key, value string) bool {
+func (ttc *TimedText) CreateOrReplace(key, value string) bool {
 	var buff bytes.Buffer
 	buff.WriteString(value)
 
@@ -69,7 +69,7 @@ func (ttc *TimedTextCache) CreateOrReplace(key, value string) bool {
 
 // Get retrieves the value of the given key, returning an empty string if does
 // not exist and a bool, true if the key exists, false otherwise.
-func (ttc *TimedTextCache) Get(key string) (value string, exists bool) {
+func (ttc *TimedText) Get(key string) (value string, exists bool) {
 	var buff *bytes.Buffer
 	buff, exists = ttc.cache[key]
 	if !exists {
@@ -81,7 +81,7 @@ func (ttc *TimedTextCache) Get(key string) (value string, exists bool) {
 }
 
 // deletes the given key from the cache after the cache expiration time
-func (ttc *TimedTextCache) createKeyExpiration(key string) {
+func (ttc *TimedText) createKeyExpiration(key string) {
 	if ttc.expireAfter == nil {
 		return
 	}
