@@ -3,6 +3,7 @@ language: go
 go:
   - "1.9.x"
   - "1.10.x"
+  - tip
 
 install:
   - go get -u github.com/golang/dep/...
@@ -11,3 +12,6 @@ install:
 # Don't email me the results of the test runs.
 notifications:
   email: false
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
