@@ -1,6 +1,6 @@
 # Cache
 
-[![Build Status](https://travis-ci.org/jonstacks/cache.svg?branch=master)](https://travis-ci.org/jonstacks/cache) [![GoDoc](https://godoc.org/github.com/jonstacks/cache?status.png)](https://godoc.org/github.com/jonstacks/cache)
+[![Build Status](https://travis-ci.org/jonstacks/cache.svg?branch=master)](https://travis-ci.org/jonstacks/cache) [![GoDoc](https://godoc.org/github.com/jonstacks/cache?status.png)](https://godoc.org/github.com/jonstacks/cache) [![codecov](https://codecov.io/gh/jonstacks/cache/branch/master/graph/badge.svg)](https://codecov.io/gh/jonstacks/cache)
 
 Various caching implementations for go.
 
