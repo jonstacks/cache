@@ -1,4 +1,4 @@
-# Cache
+# Cache [![Build Status](https://travis-ci.org/jonstacks/cache.svg?branch=master)](https://travis-ci.org/jonstacks/cache)
 
 Various caching implementations for go.
 
